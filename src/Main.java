@@ -20,43 +20,75 @@ public class Main {
             System.out.println("Держись! осталось  " + i + " метров");
         }
         System.out.println("Задача №3");
-        int day = 0;
-
-        System.out.println("Задача №4");
-        int month = 0;
-        double total = 0;
-        while (total < 12_000_000) {
-            total = total + 15000;
-            month++;
-            if (month % 6 == 0) {
-                total = total * 1.07;
-                if (total >= 12_000_000)
-                    break;
-            }
-            System.out.println("Месяц " + month + " Сумма " + total);
-        }
-        System.out.println("Задача №5");
-        int charge = 20;
-        int min = 0;
-        int overhearts = 0;
-        while (charge < 100 && overhearts <= 3) {
-            min++;
-            charge = charge + 2;
-            if (min % 10 == 0) {
-                overhearts++;
-                min += 2;
-                System.out.println(" Случился перегрев " + overhearts);
+        int days = 0;
+        int currentDay = 1;
+        int budget = 1200;
+        while (budget >= 100) {
+            if (currentDay % 5 == 0) {
+                currentDay++;
                 continue;
             }
-            System.out.println("Заряд " + charge + " %");
-            if (overhearts == 3)
-                break;
-            System.out.println("Зарядка прекращена. Текущий заряд " + charge + " %");
+            budget -= 100;
+            days++;
+            currentDay++;
         }
-        System.out.println("Время зарядки составило " + min + " минут");
+        System.out.println(days + " - дней хватит бюджета");
 
+        {
+            System.out.println("Задача №3 Вариант №2");
+
+            for (int i = 1; budget >= 100; currentDay++) {
+                if (currentDay % 5 == 0) {
+                    budget += 100;
+                } else {
+                    budget -= 100;
+                }
+                days++;
+            }
+
+            System.out.println(days + " - дней хватит бюджета");
+
+            System.out.println();
+
+            System.out.println("Задача №4");
+            int month = 0;
+            double total = 0;
+            while (total < 12_000_000) {
+                total = total + 15000;
+                month++;
+                if (month % 6 == 0) {
+                    total = total * 1.07;
+                    if (total >= 12_000_000)
+                        break;
+                }
+                System.out.printf(" Месяц %d Сумма руб. коп. %.2f%n", month, total);
+
+            }
+            System.out.println("Задача №5");
+            int charge = 20;
+            int min = 0;
+            int overhearts = 0;
+            while (charge < 100 && overhearts < 3) {
+                min++;
+                charge += 2;
+
+                if (min % 10 == 0) {
+                    overhearts++;
+                    System.out.println("Случился перегрев " + overhearts);
+                }
+                System.out.println("Заряд " + charge + " %");
+                if (overhearts == 3) {
+                    System.out.println("Зарядка прекращена из-за перегрева. Текущий заряд " + charge + "%");
+                    break;
+                }
+                if (charge >= 100) {
+                    System.out.println("Зарядка завершена. Текущий заряд " + charge + "%");
+
+                }
+
+            }
+        }
     }
-
 }
 
 

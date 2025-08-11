@@ -85,7 +85,6 @@ public class Main {
                     System.out.println("Зарядка завершена. Текущий заряд " + charge + "%");
 
                 }
-
             }
         }
     }
